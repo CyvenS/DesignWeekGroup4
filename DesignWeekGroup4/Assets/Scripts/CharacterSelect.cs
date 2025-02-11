@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.Users;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -17,6 +22,8 @@ public class CharacterSelect : MonoBehaviour
     public string[] colourOpts;
     public bool[] colourOptsSelected;
 
+    public GameObject[] Users;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +33,14 @@ public class CharacterSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Users.Length < 2)
+        {
+            Users = GameObject.FindGameObjectsWithTag("Player");
+        }
+        else
+        {
+            int Rng = Random.Range(1, 3);
+            SceneManager.LoadScene(Rng);
+        }
     }
 }
