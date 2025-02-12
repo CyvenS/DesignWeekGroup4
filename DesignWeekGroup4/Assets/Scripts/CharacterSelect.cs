@@ -23,11 +23,18 @@ public class CharacterSelect : MonoBehaviour
     public bool[] colourOptsSelected;
 
     public GameObject[] Users;
+    public PlayerControllerScrip[] playerControllers;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Users = GameObject.FindGameObjectsWithTag("Player");
+        playerControllers = new PlayerControllerScrip[2];
+
+        for (int i = 0; i < Users.Length; i++)
+        {
+            playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
+        }
     }
 
     // Update is called once per frame
@@ -36,11 +43,21 @@ public class CharacterSelect : MonoBehaviour
         if (Users.Length < 2)
         {
             Users = GameObject.FindGameObjectsWithTag("Player");
+            for (int i = 0; i < Users.Length; i++)
+            {
+                playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
+            }
         }
         else
         {
-            int Rng = Random.Range(1, 3);
-            SceneManager.LoadScene(Rng);
+            if (playerControllers[0].aPress && playerControllers[1].aPress)
+            {
+                int Rng = Random.Range(1, 3);
+                SceneManager.LoadScene(Rng);
+            }
         }
+
+        Users[0].transform.position = new Vector3(-7, Users[0].transform.position.y, Users[0].transform.position.z);
+        Users[1].transform.position = new Vector3(7, Users[1].transform.position.y, Users[1].transform.position.z);
     }
 }

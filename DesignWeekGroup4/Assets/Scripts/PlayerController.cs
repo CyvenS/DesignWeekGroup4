@@ -22,7 +22,7 @@ public class PlayerControllerScrip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(lookAxis * playerSpeed, 0);
+        
     }
     public void LookAxisCall(InputAction.CallbackContext context)
     {

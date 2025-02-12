@@ -9,31 +9,38 @@ public class TugOfWar : MonoBehaviour
     public int team1Tug;
     public int team2Tug;
 
+
     public bool user1CoolDown;
     public bool user2CoolDown;
 
     public int SampScore;
-    public int sampDif;
+    public float sampDif;
 
+    public GameObject Rope;
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
     // Start is called before the first frame update
     void Start()
     {
         SampScore = 20;
+        Rope = GameObject.Find("Rope");
         Users = GameObject.FindGameObjectsWithTag("Player");
         playerControllers = new PlayerControllerScrip[Users.Length];
 
-        playerControllers[0] = Users[0].GetComponent<PlayerControllerScrip>();
-        playerControllers[1] = Users[1].GetComponent<PlayerControllerScrip>();
+        for (int i = 0; i < Users.Length; i++)
+        {
+            playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
 
+            Users[i].transform.SetParent(Rope.transform, true);
+        }
+
+        Users[0].transform.position = new Vector3(-5, Users[0].transform.position.y, Users[0].transform.position.z);
+        Users[1].transform.position = new Vector3(5, Users[1].transform.position.y, Users[1].transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerControllers[0] = Users[0].GetComponent<PlayerControllerScrip>();
-        playerControllers[1] = Users[1].GetComponent<PlayerControllerScrip>();
 
         if (playerControllers[0].aPress && user1CoolDown == true)
         {
@@ -56,17 +63,21 @@ public class TugOfWar : MonoBehaviour
         }
 
 
-        sampDif = team2Tug - team1Tug;
+        sampDif = (team2Tug - team1Tug);
+        Rope.transform.position = new Vector3(sampDif/10, 0, 0);
+
 
         if (team1Tug >= SampScore)
         {
-            //team1win
-            Debug.Log("team1 win");
+            RunWin(1);
         }
         if (team2Tug >= SampScore)
         {
-            //team2win
-            Debug.Log("team2 win");
+            RunWin(2);
         }
+    }
+    void RunWin(int winTeam)
+    {
+        Debug.Log("team " + winTeam + " wins");
     }
 }
