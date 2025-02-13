@@ -14,6 +14,8 @@ public class PlayerControllerScrip : MonoBehaviour
 
     public GameObject miniManager;
     public GameObject yolks;
+
+    public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,12 @@ public class PlayerControllerScrip : MonoBehaviour
             newyolk.GetComponent<Rigidbody2D>().velocity = new Vector3 (Random.Range(-5.0f, 5.0f), Random.Range(3.0f, 7.0f));
         }
         transform.position = new Vector3(transform.position.x, -100, transform.position.z);
+        dead = true;
     }
-    
+
+    public void OnTriggerEnter(Collider other)
+    {
+        OnDeath();
+    }
+
 }

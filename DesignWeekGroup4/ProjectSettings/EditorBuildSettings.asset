@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RaceMaze.unity
     guid: d9c5631517ff3d94fa4440443562e011
+  - enabled: 1
+    path: Assets/Scenes/DodgeKnives.unity
+    guid: 0f61f4afe17ce6847a4276ac22eb444d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 18371edc5b662824cb02fdb2ddc2a4b4, type: 2}
