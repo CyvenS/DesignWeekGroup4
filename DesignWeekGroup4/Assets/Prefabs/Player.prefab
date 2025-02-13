@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4875507026563761908}
   - component: {fileID: 7237782419708048432}
   - component: {fileID: 6495505459348058419}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   playerSpeed: 5
   miniManager: {fileID: 0}
   yolks: {fileID: 2010354612374178367, guid: 296d38f56aac6934aa9ad149d2ad8226, type: 3}
+  dead: 0
 --- !u!114 &4875507026563761908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,11 +215,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &6495505459348058419
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

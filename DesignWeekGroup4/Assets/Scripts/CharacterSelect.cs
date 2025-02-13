@@ -39,6 +39,8 @@ public class CharacterSelect : MonoBehaviour
         {
             playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
         }
+
+        Application.targetFrameRate = 120;
     }
 
     // Update is called once per frame
@@ -59,7 +61,7 @@ public class CharacterSelect : MonoBehaviour
             if (playerControllers[0].aPress && playerControllers[1].aPress)
             {
                 //if both players hold action for 3 seconds, game starts.
-                if (loadCount > 2000)
+                if (loadCount > 480)
                 {
                     int Rng = Random.Range(1, 4);
                     SceneManager.LoadScene(Rng);
@@ -80,17 +82,17 @@ public class CharacterSelect : MonoBehaviour
 
             countdown.text = " ";
         }
-        if (loadCount == 500)
+        if (loadCount == 120)
         {
             
             countdown.text = 3.ToString();
         }
-        if (loadCount == 1000)
+        if (loadCount == 240)
         {
 
             countdown.text = 2.ToString();
         }
-        if (loadCount == 1500)
+        if (loadCount == 360)
         {
 
             countdown.text = 1.ToString();

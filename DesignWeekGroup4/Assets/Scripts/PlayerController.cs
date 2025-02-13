@@ -52,7 +52,7 @@ public class PlayerControllerScrip : MonoBehaviour
         dead = true;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         OnDeath();
     }
