@@ -1,14 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaceMaze : MonoBehaviour
 {
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
+
+    public int winTeam;
+    public int gameCountDown;
+    public GameObject scoreItem;
     // Start is called before the first frame update
     void Start()
     {
+        scoreItem = GameObject.Find("ScoreItem");
         Users = GameObject.FindGameObjectsWithTag("Player");
         playerControllers = new PlayerControllerScrip[Users.Length];
 
@@ -24,6 +31,8 @@ public class RaceMaze : MonoBehaviour
         Users[1].transform.position = new Vector3(5, 15, 0);
 
 
+        Array.Resize(ref scoreItem.GetComponent<ScoreItem>().gamesPlayed, scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length + 1);
+        scoreItem.GetComponent<ScoreItem>().gamesPlayed[scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length - 1] = SceneManager.GetActiveScene().buildIndex;
 
     }
 
@@ -42,16 +51,42 @@ public class RaceMaze : MonoBehaviour
             {
                 Users[i].transform.position = new Vector3(0, -50, 0);
                 Debug.Log("Team win" + i);
-                onEnd();
+                winTeam = i;
+                OnEnd();
+
             }
         }
+        if (gameCountDown > 1)
+        {
+            gameCountDown--;
+        }
+        else if (gameCountDown == 1)
+        {
+
+            if (winTeam == 1)
+            {
+                scoreItem.GetComponent<ScoreItem>().team1Score++;
+            }
+            else if (winTeam == 2)
+            {
+
+                scoreItem.GetComponent<ScoreItem>().team2Score++;
+            }
+            SceneManager.LoadScene("BetweenGames");
+        }
     }
-    void onEnd()
+    void OnEnd()
     {
         for (int j = 0; j < Users.Length; j++)
         {
-            playerControllers[j].OnDeath();
             Users[j].GetComponent<CapsuleCollider2D>().enabled = false;
+            if (gameCountDown == 0)
+            {
+                playerControllers[j].OnDeath();
+                gameCountDown = 360;
+            }
         }
+
+        
     }
 }

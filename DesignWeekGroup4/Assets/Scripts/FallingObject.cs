@@ -25,7 +25,7 @@ public class FallingObject : MonoBehaviour
             if (GameObject.FindGameObjectsWithTag("Falling").Length < 20 && Random.Range(1,4) == 1)
             {
                 GameObject clone = Instantiate(self);
-                transform.position = new Vector3(Random.Range(-10.0f, 10.0f), 20, 0);
+                clone.transform.position = new Vector3(Random.Range(-10.0f, 10.0f), 20, 0);
             }
         }
 

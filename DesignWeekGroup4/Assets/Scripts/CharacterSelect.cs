@@ -63,7 +63,7 @@ public class CharacterSelect : MonoBehaviour
                 //if both players hold action for 3 seconds, game starts.
                 if (loadCount > 480)
                 {
-                    int Rng = Random.Range(1, 4);
+                    int Rng = Random.Range(2, 5);
                     SceneManager.LoadScene(Rng);
                 }
                 else

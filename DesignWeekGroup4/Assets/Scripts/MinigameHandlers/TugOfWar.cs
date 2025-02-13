@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class TugOfWar : MonoBehaviour
@@ -16,14 +18,17 @@ public class TugOfWar : MonoBehaviour
     public int SampScore;
     public float sampDif;
 
+    public int gameCountDown;
     public bool gameOver = false;
 
     public GameObject Rope;
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
+    public GameObject scoreItem;
     // Start is called before the first frame update
     void Start()
     {
+        scoreItem = GameObject.Find("ScoreItem");
         SampScore = 50;
         Rope = GameObject.Find("Rope");
         Users = GameObject.FindGameObjectsWithTag("Player");
@@ -33,17 +38,24 @@ public class TugOfWar : MonoBehaviour
         {
             playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
 
-            Users[i].transform.SetParent(Rope.transform, true);
         }
 
         Users[0].transform.position = new Vector3(-5, 0, 0);
         Users[1].transform.position = new Vector3(5, 0, 0);
+
+        Array.Resize(ref scoreItem.GetComponent<ScoreItem>().gamesPlayed, scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length + 1);
+        scoreItem.GetComponent<ScoreItem>().gamesPlayed[scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length - 1] = SceneManager.GetActiveScene().buildIndex;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (gameOver == false)
+        {
+            Users[0].transform.position = new Vector3(-5, 0, 0) + Rope.transform.position;
+            Users[1].transform.position = new Vector3(5, 0, 0) + Rope.transform.position;
+        }
         if (playerControllers[0].aPress && user1CoolDown == true)
         {
             team1Tug++;
@@ -70,14 +82,23 @@ public class TugOfWar : MonoBehaviour
 
         if (sampDif < -20 || team1Tug >= SampScore)
         {
-            RunWin(1,2);
+            RunWin(1);
         }
         if (sampDif > 20 || team2Tug >= SampScore)
         {
-            RunWin(2, 1);
+            RunWin(2);
+        }
+
+        if (gameCountDown > 1)
+        {
+            gameCountDown--;
+        }
+        else if (gameCountDown == 1)
+        {
+            SceneManager.LoadScene("BetweenGames");
         }
     }
-    void RunWin(int winTeam, int loseTeam)
+    void RunWin(int winTeam)
     {
         Debug.Log("team " + winTeam + " wins");
 
@@ -85,12 +106,17 @@ public class TugOfWar : MonoBehaviour
         {
             playerControllers[1].OnDeath();
             gameOver = true;
+            scoreItem.GetComponent<ScoreItem>().team1Score++;
         }
         else if (winTeam == 2 && !gameOver)
         {
             playerControllers[0].OnDeath();
             gameOver = true;
+            scoreItem.GetComponent<ScoreItem>().team2Score++;
         }
-
+        if (gameCountDown == 0)
+        {
+            gameCountDown = 360;
+        }
     }
 }

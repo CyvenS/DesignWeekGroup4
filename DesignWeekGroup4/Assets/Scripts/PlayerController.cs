@@ -24,10 +24,6 @@ public class PlayerControllerScrip : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void LookAxisCall(InputAction.CallbackContext context)
     {
         lookAxis = context.ReadValue<float>();

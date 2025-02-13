@@ -6,9 +6,11 @@ public class DEFAULTMINISCRIP : MonoBehaviour
 {
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
+    public GameObject scoreItem;
     // Start is called before the first frame update
     void Start()
     {
+        scoreItem = GameObject.Find("ScoreItem");
         Users = GameObject.FindGameObjectsWithTag("Player");
         playerControllers = new PlayerControllerScrip[Users.Length];
 
