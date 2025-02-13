@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class PlayerControllerScrip : MonoBehaviour
     public float playerSpeed = 5;
 
     public GameObject miniManager;
+    public GameObject yolks;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,5 +36,17 @@ public class PlayerControllerScrip : MonoBehaviour
         aPress = context.action.triggered;
     }
 
+
+    public void OnDeath()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            GameObject newyolk = Instantiate(yolks);
+            newyolk.name.EndsWith(i.ToString());
+            newyolk.transform.position = transform.position;
+            newyolk.GetComponent<Rigidbody2D>().velocity = new Vector3 (Random.Range(-5.0f, 5.0f), Random.Range(3.0f, 7.0f));
+        }
+        transform.position = new Vector3(transform.position.x, -100, transform.position.z);
+    }
     
 }

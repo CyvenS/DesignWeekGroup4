@@ -125,6 +125,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Keyboard (WASD)",
+                    "id": "3bf2c5ed-367c-4dc2-8b28-56f5aeb46f46",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "55545c00-0801-4b7a-94cd-338613e26db5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8e4f53f0-4dfe-4e43-9ea4-034c1f0ba989",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "GamePad Shoulders",
                     "id": "d177ec46-a9c6-4329-bfab-081da78fd219",
                     "path": "1DAxis",
@@ -238,6 +271,17 @@
                     "name": "",
                     "id": "d1f77866-b199-45bf-894f-0512590274ee",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "InputA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "604ecd59-e89c-4d63-8a39-eb89e5bbebca",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

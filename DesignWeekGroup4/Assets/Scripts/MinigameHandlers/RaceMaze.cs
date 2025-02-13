@@ -15,11 +15,13 @@ public class RaceMaze : MonoBehaviour
         for (int i = 0; i < Users.Length; i++)
         {
             playerControllers[i] = Users[i].GetComponent<PlayerControllerScrip>();
-            Users[i].transform.position = new Vector3(Users[i].transform.position.x, 15, Users[i].transform.position.y);
             Rigidbody2D RigBod = Users[i].GetComponent<Rigidbody2D>();
             RigBod.gravityScale = 1;
             Users[i].GetComponent<CapsuleCollider2D>().enabled = true;
         }
+
+        Users[0].transform.position = new Vector3(-5, 15, 0);
+        Users[1].transform.position = new Vector3(5, 15, 0);
 
 
 
@@ -36,15 +38,20 @@ public class RaceMaze : MonoBehaviour
 
         for (int i = 0; i < Users.Length; i++)
         {
-            if (Users[i].transform.position.y < -7)
+            if (Users[i].transform.position.y < -10)
             {
+                Users[i].transform.position = new Vector3(0, -50, 0);
                 Debug.Log("Team win" + i);
-
-                for (int j = 0; j < Users.Length; j++)
-                {
-                    Users[j].GetComponent<CapsuleCollider2D>().enabled = false;
-                }
+                onEnd();
             }
+        }
+    }
+    void onEnd()
+    {
+        for (int j = 0; j < Users.Length; j++)
+        {
+            playerControllers[j].OnDeath();
+            Users[j].GetComponent<CapsuleCollider2D>().enabled = false;
         }
     }
 }

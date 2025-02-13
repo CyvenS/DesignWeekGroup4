@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem.Utilities;
@@ -21,6 +22,9 @@ public class CharacterSelect : MonoBehaviour
 
     public string[] colourOpts;
     public bool[] colourOptsSelected;
+
+    public int loadCount;
+    public TextMeshProUGUI countdown;
 
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
@@ -52,9 +56,41 @@ public class CharacterSelect : MonoBehaviour
         {
             if (playerControllers[0].aPress && playerControllers[1].aPress)
             {
-                int Rng = Random.Range(1, 3);
-                SceneManager.LoadScene(Rng);
+                if (loadCount > 2000)
+                {
+                    int Rng = Random.Range(1, 3);
+                    SceneManager.LoadScene(Rng);
+                }
+                else
+                {
+                    loadCount++;
+                }
             }
+            else
+            {
+                loadCount = 0;
+            }
+        }
+
+        if (loadCount == 0)
+        {
+
+            countdown.text = " ";
+        }
+        if (loadCount == 500)
+        {
+            
+            countdown.text = 3.ToString();
+        }
+        if (loadCount == 1000)
+        {
+
+            countdown.text = 2.ToString();
+        }
+        if (loadCount == 1500)
+        {
+
+            countdown.text = 1.ToString();
         }
 
         Users[0].transform.position = new Vector3(-7, Users[0].transform.position.y, Users[0].transform.position.z);

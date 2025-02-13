@@ -16,13 +16,15 @@ public class TugOfWar : MonoBehaviour
     public int SampScore;
     public float sampDif;
 
+    public bool gameOver = false;
+
     public GameObject Rope;
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
     // Start is called before the first frame update
     void Start()
     {
-        SampScore = 20;
+        SampScore = 50;
         Rope = GameObject.Find("Rope");
         Users = GameObject.FindGameObjectsWithTag("Player");
         playerControllers = new PlayerControllerScrip[Users.Length];
@@ -34,8 +36,8 @@ public class TugOfWar : MonoBehaviour
             Users[i].transform.SetParent(Rope.transform, true);
         }
 
-        Users[0].transform.position = new Vector3(-5, Users[0].transform.position.y, Users[0].transform.position.z);
-        Users[1].transform.position = new Vector3(5, Users[1].transform.position.y, Users[1].transform.position.z);
+        Users[0].transform.position = new Vector3(-5, 0, 0);
+        Users[1].transform.position = new Vector3(5, 0, 0);
     }
 
     // Update is called once per frame
@@ -66,18 +68,29 @@ public class TugOfWar : MonoBehaviour
         sampDif = (team2Tug - team1Tug);
         Rope.transform.position = new Vector3(sampDif/10, 0, 0);
 
-
-        if (team1Tug >= SampScore)
+        if (sampDif < -20 || team1Tug >= SampScore)
         {
-            RunWin(1);
+            RunWin(1,2);
         }
-        if (team2Tug >= SampScore)
+        if (sampDif > 20 || team2Tug >= SampScore)
         {
-            RunWin(2);
+            RunWin(2, 1);
         }
     }
-    void RunWin(int winTeam)
+    void RunWin(int winTeam, int loseTeam)
     {
         Debug.Log("team " + winTeam + " wins");
+
+        if (winTeam == 1 && !gameOver)
+        {
+            playerControllers[1].OnDeath();
+            gameOver = true;
+        }
+        else if (winTeam == 2 && !gameOver)
+        {
+            playerControllers[0].OnDeath();
+            gameOver = true;
+        }
+
     }
 }

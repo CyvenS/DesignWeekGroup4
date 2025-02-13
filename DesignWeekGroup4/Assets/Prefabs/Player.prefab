@@ -105,6 +105,7 @@ MonoBehaviour:
   rb: {fileID: 7237782419708048432}
   playerSpeed: 5
   miniManager: {fileID: 0}
+  yolks: {fileID: 2010354612374178367, guid: 296d38f56aac6934aa9ad149d2ad8226, type: 3}
 --- !u!114 &4875507026563761908
 MonoBehaviour:
   m_ObjectHideFlags: 0
