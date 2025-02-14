@@ -79,12 +79,12 @@ public class RaceMaze : MonoBehaviour
     {
         for (int j = 0; j < Users.Length; j++)
         {
-            Users[j].GetComponent<CapsuleCollider2D>().enabled = false;
             if (gameCountDown == 0)
             {
                 playerControllers[j].OnDeath();
                 gameCountDown = 360;
             }
+            Users[j].GetComponent<CapsuleCollider2D>().enabled = false;
         }
 
         
