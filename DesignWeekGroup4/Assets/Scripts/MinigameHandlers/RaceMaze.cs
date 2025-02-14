@@ -41,7 +41,7 @@ public class RaceMaze : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < Users.Length; i++)
         {
             playerControllers[i].rb.velocity = new Vector2(playerControllers[i].lookAxis * playerControllers[i].playerSpeed, playerControllers[i].rb.velocity.y);
 
@@ -52,8 +52,17 @@ public class RaceMaze : MonoBehaviour
             if (Users[i].transform.position.y < -10)
             {
                 Users[i].transform.position = new Vector3(0, -50, 0);
-                Debug.Log("Team win" + i);
-                winTeam = i;
+                
+                if (i == 0 || i == 2)
+                {
+                    winTeam = 1;
+                    Debug.Log("Team win" + 1);
+                }
+                if (i == 1 || i == 3)
+                {
+                    winTeam = 2;
+                    Debug.Log("Team win" + 2);
+                }
                 OnEnd();
 
             }
@@ -81,7 +90,7 @@ public class RaceMaze : MonoBehaviour
     {
         for (int j = 0; j < Users.Length; j++)
         {
-            if (gameCountDown == 0)
+            if (gameCountDown <= 0)
             {
                 playerControllers[j].OnDeath();
                 gameCountDown = 360;

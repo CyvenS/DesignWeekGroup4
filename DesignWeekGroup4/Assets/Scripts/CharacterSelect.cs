@@ -33,7 +33,7 @@ public class CharacterSelect : MonoBehaviour
     void Start()
     {
         Users = GameObject.FindGameObjectsWithTag("Player");
-        playerControllers = new PlayerControllerScrip[2];
+        playerControllers = new PlayerControllerScrip[4];
 
         for (int i = 0; i < Users.Length; i++)
         {
@@ -58,8 +58,8 @@ public class CharacterSelect : MonoBehaviour
                 Users[0].transform.GetChild(0).gameObject.SetActive(true);
                 Users[1].transform.GetChild(1).gameObject.SetActive(true);
 
-                Users[2].transform.position = new Vector3(-3, Users[3].transform.position.y, Users[3].transform.position.z);
-                Users[3].transform.position = new Vector3(3, Users[4].transform.position.y, Users[4].transform.position.z);
+                Users[2].transform.position = new Vector3(-3, Users[2].transform.position.y, Users[2].transform.position.z);
+                Users[3].transform.position = new Vector3(3, Users[3].transform.position.y, Users[3].transform.position.z);
 
                 Users[2].transform.GetChild(2).gameObject.SetActive(true);
                 Users[3].transform.GetChild(3).gameObject.SetActive(true);
