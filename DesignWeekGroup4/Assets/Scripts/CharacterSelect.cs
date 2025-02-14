@@ -98,7 +98,7 @@ public class CharacterSelect : MonoBehaviour
             countdown.text = 1.ToString();
         }
 
-
+        
 
 
         // customization

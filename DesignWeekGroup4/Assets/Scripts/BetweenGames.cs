@@ -34,6 +34,15 @@ public class BetweenGames : MonoBehaviour
 
             playerControllers[i].dead = false;
         }
+
+        if (ScoreItemScrip.team1Score == 3)
+        {
+
+        }
+        else if (ScoreItemScrip.team2Score == 3)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +59,7 @@ public class BetweenGames : MonoBehaviour
                     int Rng = Random.Range(2, 5);
                     validGame = true;
 
-                    if (ScoreItemScrip.gamesPlayed.Length == SceneManager.sceneCountInBuildSettings + 2)
+                    if (ScoreItemScrip.gamesPlayed.Length == SceneManager.sceneCountInBuildSettings - 3)
                     {
                         ScoreItemScrip.gamesPlayed = new int[0];
                     }
