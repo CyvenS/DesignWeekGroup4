@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,8 @@ public class BetweenGames : MonoBehaviour
     public bool validGame = false;
     public GameObject[] Users;
     public PlayerControllerScrip[] playerControllers;
+    public TextMeshProUGUI countdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +76,28 @@ public class BetweenGames : MonoBehaviour
         else
         {
             loadCount = 0;
+        }
+
+
+        if (loadCount == 0)
+        {
+
+            countdown.text = " ";
+        }
+        if (loadCount == 120)
+        {
+
+            countdown.text = 3.ToString();
+        }
+        if (loadCount == 240)
+        {
+
+            countdown.text = 2.ToString();
+        }
+        if (loadCount == 360)
+        {
+
+            countdown.text = 1.ToString();
         }
     }
 }

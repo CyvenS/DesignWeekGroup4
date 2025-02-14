@@ -39,6 +39,7 @@ public class PlayerControllerScrip : MonoBehaviour
     {
         for (int i = 0; i < 15; i++)
         {
+            GameObject.Find("DeathSound").GetComponent<AudioSource>().Play();
             GameObject newyolk = Instantiate(yolks);
             newyolk.name.EndsWith(i.ToString());
             newyolk.transform.position = transform.position;
