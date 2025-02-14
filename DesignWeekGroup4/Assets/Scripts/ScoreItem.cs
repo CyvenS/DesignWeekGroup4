@@ -8,6 +8,9 @@ public class ScoreItem : MonoBehaviour
 
     public int team1Score;
     public int team2Score;
+
+
+
     // Start is called before the first frame update
     void Start()
     {

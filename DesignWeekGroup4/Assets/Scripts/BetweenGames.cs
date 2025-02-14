@@ -14,9 +14,18 @@ public class BetweenGames : MonoBehaviour
     public PlayerControllerScrip[] playerControllers;
     public TextMeshProUGUI countdown;
 
+    public GameObject t1egg1;
+    public GameObject t1egg2;
+    public GameObject t1egg3;
+
+    public GameObject t2egg1;
+    public GameObject t2egg2;
+    public GameObject t2egg3;
+
     // Start is called before the first frame update
     void Start()
     {
+
         ScoreItemObj = GameObject.Find("ScoreItem");
         ScoreItemScrip = ScoreItemObj.GetComponent<ScoreItem>();
         Users = GameObject.FindGameObjectsWithTag("Player");
@@ -24,6 +33,8 @@ public class BetweenGames : MonoBehaviour
 
         Users[0].transform.position = new Vector3(-5, 0, 0);
         Users[1].transform.position = new Vector3(5, 0, 0);
+        Users[2].transform.position = new Vector3(-3, 0, 0);
+        Users[3].transform.position = new Vector3(3, 0, 0);
 
         for (int i = 0; i < Users.Length; i++)
         {
@@ -35,20 +46,45 @@ public class BetweenGames : MonoBehaviour
             playerControllers[i].dead = false;
         }
 
-        if (ScoreItemScrip.team1Score == 3)
+        if (ScoreItemScrip.team1Score == 3 || ScoreItemScrip.team2Score == 3)
         {
-
+            SceneManager.LoadScene("WinScreen");
         }
-        else if (ScoreItemScrip.team2Score == 3)
+
+
+        if (ScoreItemScrip.team1Score > 0)
         {
+            t1egg1.SetActive(true);
+            if (ScoreItemScrip.team1Score > 1)
+            {
+                t1egg2.SetActive(true);
+                if (ScoreItemScrip.team1Score > 2)
+                {
+                    t1egg3.SetActive(true);
+                }
 
+            }
         }
+        if (ScoreItemScrip.team2Score > 0)
+        {
+            t2egg1.SetActive(true);
+            if (ScoreItemScrip.team2Score > 1)
+            {
+                t2egg2.SetActive(true);
+                if (ScoreItemScrip.team2Score > 2)
+                {
+                    t2egg3.SetActive(true);
+                }
+
+            }
+        }
+;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerControllers[0].aPress && playerControllers[1].aPress)
+        if (playerControllers[0].aPress && playerControllers[1].aPress && playerControllers[2].aPress && playerControllers[3].aPress)
         {
             //if both players hold action for 3 seconds, game starts.
             if (loadCount > 480)
@@ -56,7 +92,7 @@ public class BetweenGames : MonoBehaviour
                 bool loop = true;
                 while (loop)
                 {
-                    int Rng = Random.Range(2, 5);
+                    int Rng = Random.Range(3, SceneManager.sceneCountInBuildSettings);
                     validGame = true;
 
                     if (ScoreItemScrip.gamesPlayed.Length == SceneManager.sceneCountInBuildSettings - 3)

@@ -27,8 +27,10 @@ public class RaceMaze : MonoBehaviour
             Users[i].GetComponent<CapsuleCollider2D>().enabled = true;
         }
 
-        Users[0].transform.position = new Vector3(-5, 15, 0);
-        Users[1].transform.position = new Vector3(5, 15, 0);
+        Users[0].transform.position = new Vector3(-7, 15, 0);
+        Users[1].transform.position = new Vector3(7, 15, 0);
+        Users[2].transform.position = new Vector3(-5, 15, 0);
+        Users[3].transform.position = new Vector3(5, 15, 0);
 
 
         Array.Resize(ref scoreItem.GetComponent<ScoreItem>().gamesPlayed, scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length + 1);

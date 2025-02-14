@@ -31,6 +31,8 @@ public class KnifeDodge : MonoBehaviour
 
         Users[0].transform.position = new Vector3(-5, -3, 0);
         Users[1].transform.position = new Vector3(5, -3, 0);
+        Users[2].transform.position = new Vector3(-3, -3, 0);
+        Users[3].transform.position = new Vector3(3, -3, 0);
 
         Array.Resize(ref scoreItem.GetComponent<ScoreItem>().gamesPlayed, scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length + 1);
         scoreItem.GetComponent<ScoreItem>().gamesPlayed[scoreItem.GetComponent<ScoreItem>().gamesPlayed.Length - 1] = SceneManager.GetActiveScene().buildIndex;
@@ -51,13 +53,13 @@ public class KnifeDodge : MonoBehaviour
             }
         }
 
-        if (playerControllers[0].dead == true && gameOver == false) //UPDATE FOR 4PLAYER
+        if (playerControllers[0].dead == true && playerControllers[2].dead == true && gameOver == false) 
         {
             OnEnd();
             Debug.Log("team 2 win");
             scoreItem.GetComponent<ScoreItem>().team2Score++;
         }
-        if (playerControllers[1].dead == true && gameOver == false)
+        if (playerControllers[1].dead == true && playerControllers[3].dead == true && gameOver == false)
         {
             OnEnd();
             Debug.Log("team 1 win");

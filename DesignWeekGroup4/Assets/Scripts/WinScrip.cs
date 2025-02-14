@@ -23,6 +23,8 @@ public class WinScrip : MonoBehaviour
 
         playerControllers[0] = Users[0].GetComponent<PlayerControllerScrip>();
         playerControllers[1] = Users[1].GetComponent<PlayerControllerScrip>();
+        playerControllers[2] = Users[2].GetComponent<PlayerControllerScrip>();
+        playerControllers[3] = Users[3].GetComponent<PlayerControllerScrip>();
 
 
         if (scoreItemScrip.team1Score == 3)
@@ -40,7 +42,7 @@ public class WinScrip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControllers[0].aPress && playerControllers[1].aPress)
+        if (playerControllers[0].aPress && playerControllers[1].aPress && playerControllers[2].aPress && playerControllers[3].aPress)
         {
             //if both players hold action for 3 seconds, game starts.
             if (loadCount > 480)

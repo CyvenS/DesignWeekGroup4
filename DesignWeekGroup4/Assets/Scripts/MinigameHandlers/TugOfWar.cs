@@ -14,6 +14,8 @@ public class TugOfWar : MonoBehaviour
 
     public bool user1CoolDown;
     public bool user2CoolDown;
+    public bool user3CoolDown;
+    public bool user4CoolDown;
 
     public int SampScore;
     public float sampDif;
@@ -55,6 +57,8 @@ public class TugOfWar : MonoBehaviour
         {
             Users[0].transform.position = new Vector3(-5, 0, 0) + Rope.transform.position;
             Users[1].transform.position = new Vector3(5, 0, 0) + Rope.transform.position;
+            Users[2].transform.position = new Vector3(-3, 0, 0) + Rope.transform.position;
+            Users[3].transform.position = new Vector3(3, 0, 0) + Rope.transform.position;
         }
         if (playerControllers[0].aPress && user1CoolDown == true)
         {
@@ -74,6 +78,27 @@ public class TugOfWar : MonoBehaviour
         if (!playerControllers[1].aPress)
         {
             user2CoolDown = true;
+        }
+
+
+        if (playerControllers[2].aPress && user3CoolDown == true)
+        {
+            team1Tug++;
+            user3CoolDown = false;
+        }
+        if (playerControllers[3].aPress && user4CoolDown == true)
+        {
+            team2Tug++;
+            user4CoolDown = false;
+        }
+
+        if (!playerControllers[2].aPress)
+        {
+            user3CoolDown = true;
+        }
+        if (!playerControllers[3].aPress)
+        {
+            user4CoolDown = true;
         }
 
 
@@ -105,12 +130,14 @@ public class TugOfWar : MonoBehaviour
         if (winTeam == 1 && !gameOver)
         {
             playerControllers[1].OnDeath();
+            playerControllers[3].OnDeath();
             gameOver = true;
             scoreItem.GetComponent<ScoreItem>().team1Score++;
         }
         else if (winTeam == 2 && !gameOver)
         {
             playerControllers[0].OnDeath();
+            playerControllers[2].OnDeath();
             gameOver = true;
             scoreItem.GetComponent<ScoreItem>().team2Score++;
         }

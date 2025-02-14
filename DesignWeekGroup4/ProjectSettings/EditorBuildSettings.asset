@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/BetweenGames.unity
     guid: fdf532e5398abc443ab668e718a39745
   - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 600f57f6dc942dd4e9cea967bad72b53
+  - enabled: 1
     path: Assets/Scenes/TugOfWar.unity
     guid: 960cbdd11cb50f249a174896520a9503
   - enabled: 1
